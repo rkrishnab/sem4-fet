@@ -1,35 +1,40 @@
 <html>
   <head>
-    <title>Student Details  Form</title>
+    <title>Hire Me - Contact Form</title>
   </head>
   <body>
-    <h1>Student Details Form</h1>
+
+    <h1>Hire Me</h1>
+    <h2>Contact Form</h2>
+    <p>Fill in the details below and I will get back to you!</p>
+
     <form>
-      <p>While filling this form give college email-id</p>
-      <label for="fname">First name:</label><br>
-      <input type="text" id="fname" name="fname" ><br>
-      <label for="lname">Last name:</label><br>
-      <input type="text" id="lname" name="lname" ><br>
-      <label for="femail">College email:</label><br>
-      <input type="text" id="femail" name="femail"><br><br>
-      <p>Choose currently studying year:</p>
-      <input type="radio" id="1st year" name="Currently studying year" value="1st year">
-      <label for="1st year">1st year</label><br>
-      <input type="radio" id="2nd year" name="Currently studying year" value="2nd year">
-      <label for="2nd year">2nd year</label><br>
-      <input type="radio" id="3rd year" name="Currently studying year" value="3rd year">
-      <label for="3rd year">3rd year</label><br>
-      <input type="radio" id="4th year" name="Currently studying year" value="4th year">
-      <label for="4th year">4th year</label><br>
-      <label for="branch"><b>Choose your branch:</b></label>
-      <select id="" name="branch">
-      <option value="Computer science and engineering">Computer Science and Engineering</option>
-      <option value="Electronica and communication">Electronics and Communication</option>
-      <option value="Mechanical Engineering">Mechanical Engineering</option>
-      <option value="Mechatronis">Mechatronics</option>
-      <option value="Information Science and Engineering">Information Science and Engineering</option>
-      </select><br>
-      <input type="submit" value="Submit"><br>
+
+      <label for="fname">First Name:</label><br>
+      <input type="text" id="fname" name="fname" placeholder="Enter your first name"><br><br>
+
+      <label for="lname">Last Name:</label><br>
+      <input type="text" id="lname" name="lname" placeholder="Enter your last name"><br><br>
+
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" placeholder="Enter your email"><br><br>
+
+      <label for="subject">Subject:</label><br>
+      <select id="subject" name="subject">
+        <option value="">-- Select a Subject --</option>
+        <option value="job offer">Job Offer</option>
+        <option value="internship">Internship Opportunity</option>
+        <option value="freelance">Freelance Project</option>
+        <option value="collaboration">Collaboration</option>
+        <option value="other">Other</option>
+      </select><br><br>
+
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" rows="5" cols="40" placeholder="Write your message here..."></textarea><br><br>
+
+      <input type="submit" value="Send Message"><br>
+
     </form>
+
   </body>
 </html>
