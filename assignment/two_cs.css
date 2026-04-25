@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { font-family: sans-serif; background-color: powderblue; padding: 20px; }
+  
+  table { 
+    width: 100%; 
+    background-color: white; 
+    border-collapse: collapse; 
+  }
 
+  th, td { 
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    text-align: left; 
+  }
+
+  th { background-color: #04AA6D; color: white; } /* W3Schools Green */
+  tr:nth-child(even) { background-color: #f2f2f2; }
+</style>
+</head>
+<body>
+
+<h2>Subject List</h2>
+
+<table>
+  <tr>
+    <th>Semester</th>
+    <th>Subjects</th>
+  </tr>
+  <tr>
+    <td>Sem 1</td>
+    <td>Maths, Physics, Kannada, AI</td>
+  </tr>
+  <tr>
+    <td>Sem 2</td>
+    <td>Maths, Chemistry, Communication, Electrical</td>
+  </tr>
+  <tr>
+    <td>Sem 3</td>
+    <td>Comp Org, Maths, Data Structure, DSD</td>
+  </tr>
+</table>
+
+<p><a href="https://github.com/rkrishnab/sem4-fet/tree/main/assignment">View My Assignments</a></p>
+
+</body>
+</html>
