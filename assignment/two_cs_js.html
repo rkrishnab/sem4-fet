@@ -3,94 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radhika | Tech Matrix</title>
+    <title>Radhika | Skill Manager</title>
     <style>
-        /* Dark Theme & Layout */
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --text: #1e293b;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a; /* Deep Navy */
-            color: #f8fafc;
+            font-family: system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            padding: 20px;
         }
 
-        .matrix-card {
-            background: #1e293b;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .container {
+            background: white;
             width: 100%;
             max-width: 450px;
-            border: 1px solid #334155;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #38bdf8; /* Sky Blue */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Search Bar Style */
-        .search-box {
+        /* Navigation Tabs */
+        .nav {
             display: flex;
             gap: 10px;
-            margin-bottom: 2rem;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .nav span {
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .active-tab { background: var(--primary); color: white; }
+
+        /* Page Handling */
+        .page { display: none; }
+        .active-page { display: block; }
+
+        /* Skill List Styling */
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #f1f5f9;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        /* Validator Form */
+        .validator-box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         input {
-            flex: 1;
-            background: #0f172a;
-            border: 1px solid #38bdf8;
-            padding: 10px;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
             border-radius: 8px;
-            color: white;
             outline: none;
         }
 
         button {
-            background: #38bdf8;
-            color: #0f172a;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
             border: none;
-            padding: 10px 20px;
             border-radius: 8px;
-            font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
+            font-weight: bold;
         }
 
-        button:hover {
-            background: #7dd3fc;
-            box-shadow: 0 0 15px #38bdf8;
+        button:hover { opacity: 0.9; }
+
+        .status {
+            font-size: 0.85rem;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav">
+            <span id="tab1" class="active-tab" onclick="showPage('view')">My Skills</span>
+            <span id="tab2" onclick="showPage('add')">Manage Skills</span>
+        </div>
+
+        <div id="viewPage" class="page active-page">
+            <h2>Current Stack</h2>
+            <div id="skillDisplay">
+                </div>
+        </div>
+
+        <div id="addPage" class="page">
+            <h2>Skill Validator</h2>
+            <div class="validator-box">
+                <p>Enter a technical skill to verify and add to your portfolio.</p>
+                <input type="text" id="newSkillInput" placeholder="e.g. Python, MySQL, Java">
+                <button onclick="processSkill()">Validate & Add</button>
+                <div id="statusMsg" class="status"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initial data
+        let skills = ["HTML", "CSS", "MySQL", "JavaScript"];
+
+        // Function to Switch Pages
+        function showPage(pageName) {
+            const viewPage = document.getElementById('viewPage');
+            const addPage = document.getElementById('addPage');
+            const tab1 = document.getElementById('tab1');
+            const tab2 = document.getElementById('tab2');
+
+            if (pageName === 'view') {
+                viewPage.classList.add('active-page');
+                addPage.classList.remove('active-page');
+                tab1.classList.add('active-tab');
+                tab2.classList.remove('active-tab');
+                renderSkills();
+            } else {
+                addPage.classList.add('active-page');
+                viewPage.classList.remove('active-page');
+                tab2.classList.add('active-tab');
+                tab1.classList.remove('active-tab');
+            }
         }
 
-        /* Skill Grid */
-        .skill-item {
-            background: #334155;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 12px;
-            transition: 0.4s;
-            border-left: 5px solid transparent;
+        // Function to display skills on Page 1
+        function renderSkills() {
+            const display = document.getElementById('skillDisplay');
+            display.innerHTML = ""; // Clear current list
+            skills.forEach(skill => {
+                display.innerHTML += `<div class="skill-item"><span>${skill}</span> ✅</div>`;
+            });
         }
 
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+        // Function to Validate and Add
+        function processSkill() {
+            const input = document.getElementById('newSkillInput');
+            const status = document.getElementById('statusMsg');
+            const newSkill = input.value.trim();
+
+            if (newSkill === "") {
+                status.innerText = "Error: Input cannot be empty.";
+                status.style.color = "red";
+                return;
+            }
+
+            // Check if skill is already in the list (Validation)
+            if (skills.map(s => s.toLowerCase()).includes(newSkill.toLowerCase())) {
+                status.innerText = `"${newSkill}" is already in your known skills!`;
+                status.style.color = "orange";
+            } else {
+                // If valid and new, add to array
+                skills.push(newSkill);
+                status.innerText = `Success! "${newSkill}" has been validated and added.`;
+                status.style.color = "green";
+                input.value = ""; // Clear input
+            }
         }
 
-        .bar-bg {
-            background: #1e293b;
-            height: 6px;
-            border-radius: 3px;
-        }
+        // Initial Load
+        renderSkills();
+    </script>
 
-        .bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #38bdf8, #818cf8
+</body>
+</html>
