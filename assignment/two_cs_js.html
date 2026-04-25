@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radhika | Skill Validator</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
 
+        .matrix-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .search-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            width: 60%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .skill-group {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            background-color: #000;
+        }
+
+        /* Highlight class for JS */
+        .highlight {
+            background-color: #fff3cd; /* Soft yellow highlight */
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="matrix-container">
+        <h2>Skill Validator</h2>
+
+        <div class="search-section">
+            <input type="text" id="skillInput" placeholder="Enter a skill (e.g. MySQL)">
+            <button onclick="checkSkill()">Check</button>
+        </div>
+
+        <div id="skillList">
+            <div class="skill-group" data-skill="html css">
+                <div class="skill-info"><span>HTML & CSS</span><span>90%</span></div>
+                <div class="progress-bar"><div class="fill" style="width: 90%;"></div></div>
+            </div>
+
+            <div class="skill-group" data-skill="mysql">
+                <div class="skill-info"><span>MySQL</span><span>75%</span></div>
+                <div class="progress-bar"><div class="fill" style="width: 75%;"></div></div>
+            </div>
+
+            <div class="skill-group" data-skill="javascript">
+                <div class="skill-info"><span>JavaScript</span><span>50%</span></div>
+                <div class="progress-bar"><div class="fill" style="width: 50%;"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkSkill() {
+           
+            const input = document.getElementById('skillInput').value.toLowerCase().trim();
+            const skills = document.querySelectorAll('.skill-group');
+            let found = false;
+
+            // Remove previous highlights
+            skills.forEach(s => s.classList.remove('highlight'));
+
+            if (input === "") {
+                alert("Please type a skill first!");
+                return;
+            }
+
+            // Loop through the list to find a match
+            skills.forEach(skillElement => {
+                const skillName = skillElement.getAttribute('data-skill');
+                
+                if (skillName.includes(input)) {
+                    skillElement.classList.add('highlight');
+                    found = true;
+                }
+            });
+
+            if (found) {
+                alert("Yes! " + input.toUpperCase() + " is in my skill list.");
+            } else {
+                alert("Sorry, " + input + " is not listed yet. I'm always learning though!");
+            }
+        }
+    </script>
+
+</body>
+</html>
