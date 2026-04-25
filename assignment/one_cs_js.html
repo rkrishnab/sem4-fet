@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Modern Option</title>
+    <style>
+        /* Clean, minimalist styling */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
 
+        button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simple Interface</h1>
+    <p>Click the button below to start the interaction.</p>
+    
+    <button onclick="runApp()">Click Me</button>
+
+    <script>
+        function runApp() {
+            // Step 1: The Prompt window to get user input
+            const userName = prompt("Welcome! What is your name?");
+
+            // Step 2: The Alert window using the input
+            if (userName) {
+                alert("Nice to meet you, " + userName + "! This is a simple working script.");
+            } else {
+                alert("Hello there! You didn't enter a name, but the code still works.");
+            }
+        }
+    </script>
+
+</body>
+</html>
